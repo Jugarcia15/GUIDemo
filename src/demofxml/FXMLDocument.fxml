@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="demofxml.FXMLDocumentController">
+   <children>
+      <HBox layoutX="8.0" prefHeight="286.0" prefWidth="485.0">
+         <children>
+            <VBox prefHeight="300.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Check Box Objects">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="DarkSouls" mnemonicParsing="false" text="Dark Souls" />
+                  <CheckBox fx:id="DankSouls" mnemonicParsing="false" text="Dank Souls" />
+                  <CheckBox fx:id="Sekiro" mnemonicParsing="false" text="Sekiro" />
+                  <Button mnemonicParsing="false" onAction="#TestButtonPushed" text="Submit" />
+                  <Label fx:id="Test" alignment="TOP_LEFT" prefHeight="300.0" prefWidth="200.0" text="Label" />
+               </children>
+            </VBox>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="ChoiceBox Object">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
+                  <Button mnemonicParsing="false" onAction="#choiceBoxButtonPushed" text="Favourite Fruit" />
+                  <Label fx:id="choiceBoxLabel" alignment="TOP_LEFT" prefHeight="203.0" prefWidth="198.0" text="Label" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
