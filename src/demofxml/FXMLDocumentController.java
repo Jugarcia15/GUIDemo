@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  *
@@ -31,6 +34,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML private ChoiceBox choiceBox;
     @FXML private Label choiceBoxLabel;
+    
+    
+    // these items are for the combobox example
+    @FXML private ComboBox comboBox;
+    @FXML private Label comboBoxLabel;
+    
+    // these items are for the radio buttons exampls
+    @FXML private RadioButton phpRadioButton;
+        @FXML private RadioButton JavaRadioButton;
+        @FXML private RadioButton cSharpRadioButton;
+    @FXML private RadioButton cPlusPlusRadioButton;
+        @FXML private Label radioButtonLabel;
+        private ToggleGroup favLangToggleGroup;
+
     
     
     // this will update the label for the  choicebox example
@@ -57,6 +74,27 @@ public class FXMLDocumentController implements Initializable {
         Test.setText("Hello World!");
     }
     
+    // this will update the combobox label when the combox is changed
+    public void comboBoxWasUpdate()
+    {
+        this.comboBoxLabel.setText("Course selected: \n" + comboBox.getValue().toString());
+    }
+    
+    //this method will update the radiobutton label when ever a different radiobutton is pushed
+    public void radioButtonChanged()
+    {
+        if (this.favLangToggleGroup.getSelectedToggle().equals(this.cPlusPlusRadioButton))
+            radioButtonLabel.setText("The selected item is: C++");
+        
+        if(this.favLangToggleGroup.getSelectedToggle().equals(this.cSharpRadioButton))
+                radioButtonLabel.setText(" the selected item is: C#");
+        if(this.favLangToggleGroup.getSelectedToggle().equals(this.JavaRadioButton))
+                radioButtonLabel.setText(" the selected item is: Java");
+        if(this.favLangToggleGroup.getSelectedToggle().equals(this.phpRadioButton))
+                radioButtonLabel.setText(" the selected item is: php");
+                              
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Test.setText(" ");
@@ -67,6 +105,20 @@ public class FXMLDocumentController implements Initializable {
         choiceBox.getItems().add("oranges");
         choiceBox.getItems().addAll("strawberries", "Pears", "Pumpkins");
         choiceBox.setValue("Apples");
+        
+        // this items are for configuration for the combo box
+        comboBox.getItems().add("COMP1030");
+        comboBox.getItems().addAll("COMP1008","MGMT2003","MGMT2010");
+        comboBoxLabel.setText(" ");
+        
+        //these items are for configuring the radioButtons
+        radioButtonLabel.setText(" ");
+        favLangToggleGroup = new ToggleGroup();
+        this.cPlusPlusRadioButton.setToggleGroup(favLangToggleGroup);
+        this.cSharpRadioButton.setToggleGroup(favLangToggleGroup);
+        this.phpRadioButton.setToggleGroup(favLangToggleGroup);
+        this.JavaRadioButton.setToggleGroup(favLangToggleGroup);
+        
     }    
     
 }
