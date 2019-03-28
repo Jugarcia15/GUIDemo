@@ -7,6 +7,7 @@ package demofxml;
 // these items were for the checkbox
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 
 /**
@@ -48,6 +52,9 @@ public class FXMLDocumentController implements Initializable {
         @FXML private Label radioButtonLabel;
         private ToggleGroup favLangToggleGroup;
 
+    //these items are for the listview example
+    @FXML private ListView listView;
+    @FXML private TextArea golfTextArea;
     
     
     // this will update the label for the  choicebox example
@@ -95,6 +102,21 @@ public class FXMLDocumentController implements Initializable {
                               
     }
     
+    //this method will copy the strings from the listview and put them in the text area
+    
+    public void listViewButtonPushed()
+    {
+        String textAreaString = " ";
+        ObservableList listOfItems = listView.getSelectionModel().getSelectedItems();
+        
+        for(Object item : listOfItems)
+        {
+            textAreaString += String.format("%s%n", (String) item);
+        }
+        this.golfTextArea.setText(textAreaString);
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Test.setText(" ");
@@ -119,6 +141,10 @@ public class FXMLDocumentController implements Initializable {
         this.phpRadioButton.setToggleGroup(favLangToggleGroup);
         this.JavaRadioButton.setToggleGroup(favLangToggleGroup);
         
+        
+        //these items are for configuring the ListArea
+        listView.getItems().addAll("Gold Balls","Wedges", "Irons","Tees", "Drivers","Putter");
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }    
     
 }
