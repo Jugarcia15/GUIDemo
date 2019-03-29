@@ -20,8 +20,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +39,18 @@ public class ExampleofTableViewController implements Initializable {
     @FXML private TableColumn<Person, String> firstNameColumn;
     @FXML private TableColumn<Person, String> lastNameColumn;
     @FXML private TableColumn<Person, LocalDate> birthdayColumn;
+    
+    //this method will allow the user to double click on a cell and update the first name of the person
+    public void changeFirstNameCellEvent(CellEditEvent editedCell)
+    {
+        Person personSelected = tableView.getSelectionModel().getSelectedItem();
+        personSelected.setFirstName(editedCell.getNewValue().toString());
+    }
+public void changeLastNameCellEvent(CellEditEvent editedCell)
+    {
+        Person personSelected = tableView.getSelectionModel().getSelectedItem();
+        personSelected.setLastName(editedCell.getNewValue().toString());
+    }    
     
     
     /**
@@ -67,7 +81,11 @@ public class ExampleofTableViewController implements Initializable {
         //load dummy date
         tableView.setItems(getPeople());
         
-        
+        //update the table to allow for the first and last name fields
+        //to be editable
+        tableView.setEditable(true);
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         
     }
 //this method will return on observable list of people objects
