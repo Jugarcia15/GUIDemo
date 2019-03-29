@@ -19,9 +19,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -39,6 +42,11 @@ public class ExampleofTableViewController implements Initializable {
     @FXML private TableColumn<Person, String> firstNameColumn;
     @FXML private TableColumn<Person, String> lastNameColumn;
     @FXML private TableColumn<Person, LocalDate> birthdayColumn;
+    
+    // these instance variables are used to create new person objects
+    @FXML private TextField firstNameTextField;
+    @FXML private TextField lastNameTextField;
+    @FXML private DatePicker birthdayDatePicker;
     
     //this method will allow the user to double click on a cell and update the first name of the person
     public void changeFirstNameCellEvent(CellEditEvent editedCell)
@@ -70,6 +78,29 @@ public void changeLastNameCellEvent(CellEditEvent editedCell)
         window.show();
     }
     
+    //when this method is called, it will pass the selected person object to 
+    // the detailed view
+    public void changeSceneToDetailedPersonView(ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("PersonView.fxml"));
+        Parent tableViewParent = loader.load();
+        
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //access the controller and call a method
+        PersonViewController controller = loader.getController();
+        controller.initData(tableView.getSelectionModel().getSelectedItem());
+        
+        
+        // This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -87,7 +118,47 @@ public void changeLastNameCellEvent(CellEditEvent editedCell)
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         
+        //this will allow the table to select multiple rows at once
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
     }
+    
+    // this method will remove the selected rows from the table
+    public void deleteButtonPushed()
+    {
+        ObservableList<Person> selectedRows, allPeople;
+        allPeople = tableView.getItems();
+        
+        //this gives us the rows that were selected
+        selectedRows = tableView.getSelectionModel().getSelectedItems();
+        
+        
+        //loop over the selected rows and remove the Person objects from the
+        //table
+        for (Person person: selectedRows)
+        {
+            allPeople.remove(person);
+        }
+    }
+    
+    
+    
+    
+    
+    // this method will create a new person and add it to the table
+    public void newPersonButtonPushed()
+    {
+        Person newPerson = new Person(firstNameTextField.getText(),
+                                      lastNameTextField.getText(),
+                                      birthdayDatePicker.getValue());
+        
+        // get all the items from the table as a list, then add the new person 
+        //to the list
+        tableView.getItems().add(newPerson);
+        
+    }
+    
+    
 //this method will return on observable list of people objects
     public ObservableList<Person> getPeople()
     {
