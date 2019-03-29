@@ -3,6 +3,7 @@ package demofxml;
 import java.time.LocalDate;
 import java.time.Period;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -11,12 +12,25 @@ import javafx.beans.property.SimpleStringProperty;
 public class Person {
     private SimpleStringProperty firstName, lastName;
     private LocalDate birthday;
+    private Image photo;
 
+    
+    //user with default image
     public Person(String firstName, String lastName, LocalDate birthday) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.birthday = birthday;
+        photo = new Image("defaultImage.png");
     }
+    
+    //user with different picture
+    public Person(String firstName, String lastName, LocalDate birthday, Image photo) {
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.birthday = birthday;
+        this.photo = photo;
+    }
+    
 
     public String getFirstName() {
         return firstName.get();
@@ -47,5 +61,14 @@ public class Person {
         this.birthday = birthday;
     }
     
+    public Image getImage()
+    {
+        return photo;
+    }
+    
+    public void setImage(Image newPicture)
+    {
+        this.photo = newPicture;
+    }
     
 }

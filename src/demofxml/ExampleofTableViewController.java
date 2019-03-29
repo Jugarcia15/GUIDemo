@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -27,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -48,6 +50,8 @@ public class ExampleofTableViewController implements Initializable {
     @FXML private TextField lastNameTextField;
     @FXML private DatePicker birthdayDatePicker;
     
+    @FXML private Button detailedPersonViewButton;
+    
     //this method will allow the user to double click on a cell and update the first name of the person
     public void changeFirstNameCellEvent(CellEditEvent editedCell)
     {
@@ -60,6 +64,14 @@ public void changeLastNameCellEvent(CellEditEvent editedCell)
         personSelected.setLastName(editedCell.getNewValue().toString());
     }    
     
+    //this method will enable the detailed view button once a row in the table
+    // is selected
+    public void userClickedonTable()
+    {
+        this.detailedPersonViewButton.setDisable(false);
+    }
+
+
     
     /**
      * Initializes the controller class.
@@ -121,6 +133,10 @@ public void changeLastNameCellEvent(CellEditEvent editedCell)
         //this will allow the table to select multiple rows at once
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
+        // disable the detailed person view button until a row is selected
+        this.detailedPersonViewButton.setDisable(true);
+        
+        
     }
     
     // this method will remove the selected rows from the table
@@ -163,7 +179,7 @@ public void changeLastNameCellEvent(CellEditEvent editedCell)
     public ObservableList<Person> getPeople()
     {
        ObservableList<Person> people = FXCollections.observableArrayList();
-       people.add(new Person("Frank","Sinatra",LocalDate.of(1915, Month.DECEMBER, 12)));
+       people.add(new Person("Frank","Sinatra",LocalDate.of(1915, Month.DECEMBER, 12), new Image("FrankSinatra.jpg")));
        people.add(new Person("Juan","Eden",LocalDate.of(1920, Month.JANUARY, 19)));
        people.add(new Person("Jack","Mulaney",LocalDate.of(1998, Month.FEBRUARY, 23)));
        
