@@ -5,12 +5,17 @@
  */
 package demofxml;
 // these items were for the checkbox
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -20,6 +25,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  *
@@ -56,6 +62,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML private ListView listView;
     @FXML private TextArea golfTextArea;
     
+    //this method is called it will change the scene to a table view example
+    public void changeScreenButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ExampleofTableView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        
+        // This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     
     // this will update the label for the  choicebox example
     public void choiceBoxButtonPushed()

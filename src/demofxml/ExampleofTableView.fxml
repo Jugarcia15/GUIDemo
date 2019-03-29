@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="demofxml.ExampleofTableViewController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="TableView Object">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="627.0" layoutY="557.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Go back to GUI Objects" />
+      <TableView fx:id="tableView" layoutX="48.0" layoutY="116.0" prefHeight="191.0" prefWidth="503.0">
+        <columns>
+          <TableColumn fx:id="firstNameColumn" prefWidth="149.66666412353516" text="First Name" />
+          <TableColumn fx:id="lastNameColumn" prefWidth="149.33333587646484" text="Last Name" />
+            <TableColumn fx:id="birthdayColumn" prefWidth="203.6666717529297" text="Birthday" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
