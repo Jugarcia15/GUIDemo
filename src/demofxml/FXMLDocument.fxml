@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demofxml.FXMLDocumentController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" stylesheets="@../gray_theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demofxml.FXMLDocumentController">
    <children>
-      <HBox layoutX="1.0" prefHeight="232.0" prefWidth="701.0">
+      <HBox layoutX="1.0" prefHeight="348.0" prefWidth="799.0">
          <children>
             <VBox prefHeight="300.0" prefWidth="200.0" spacing="10.0">
                <children>
@@ -63,7 +63,7 @@
                   <RadioButton fx:id="JavaRadioButton" mnemonicParsing="false" onAction="#radioButtonChanged" text="Java" />
                   <RadioButton fx:id="cSharpRadioButton" mnemonicParsing="false" onAction="#radioButtonChanged" text="C#" />
                   <RadioButton fx:id="phpRadioButton" mnemonicParsing="false" onAction="#radioButtonChanged" text="PHP" />
-                  <Label fx:id="radioButtonLabel" text="Label" />
+                  <Label fx:id="radioButtonLabel" alignment="TOP_LEFT" prefHeight="208.0" prefWidth="200.0" text="Label" />
                </children>
             </VBox>
          </children>
