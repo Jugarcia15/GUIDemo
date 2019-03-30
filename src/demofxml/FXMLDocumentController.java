@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -23,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -61,6 +64,17 @@ public class FXMLDocumentController implements Initializable {
     //these items are for the listview example
     @FXML private ListView listView;
     @FXML private TextArea golfTextArea;
+    
+    
+    
+    //this is the spinner object to store information
+    @FXML private Spinner gradeSpinner;
+    @FXML private Button getGradesButton;
+    @FXML private Label gradeLabel;
+    
+    
+    
+    
     
     //this method is called it will change the scene to a table view example
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
@@ -136,6 +150,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
+    //this method will read from the grade spinner and update the label when 
+    // pushed
+    public void getGradesButtonPushed()
+    {
+        this.gradeLabel.setVisible(true);
+        this.gradeLabel.setText(this.gradeSpinner.getValue().toString());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Test.setText(" ");
@@ -164,6 +186,14 @@ public class FXMLDocumentController implements Initializable {
         //these items are for configuring the ListArea
         listView.getItems().addAll("Gold Balls","Wedges", "Irons","Tees", "Drivers","Putter");
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        
+        //configure the spinner with values of 0-100
+        SpinnerValueFactory<Integer> gradesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,75);
+        this.gradeSpinner.setValueFactory(gradesValueFactory);
+        gradeSpinner.setEditable(true);
+        this.gradeLabel.setVisible(false);
+        
     }    
     
 }
